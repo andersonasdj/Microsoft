@@ -13,8 +13,11 @@ Observação:     Contas não licenciadas apresentarão uma exception durante a 
  
  Install-Module MSOnline
  Install-Module AzureAD
+ Install-Module ExchangeOnlineManagement
  Import-Module AzureAD
  Import-Module MSOnline
+ Import-Module ExchangeOnlineManagement
+ Set-ExecutionPolicy Unrestricted
 
 #>
 
