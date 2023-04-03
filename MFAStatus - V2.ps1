@@ -114,7 +114,7 @@ ForEach ($Usuario in $Usuarios) {
    }
 
    $ReportLine = [PSCustomObject] @{
-        Nome                = $Usuario.DisplayName
+        NomeExibicao        = $Usuario.DisplayName
         Email               = $Usuario.UserPrincipalName
         StatusCaixa         = $StatusCaixa
         TipoDeCaixa         = $TipoDeCaixa
@@ -141,6 +141,6 @@ ForEach ($Usuario in $Usuarios) {
 }
 
 Write-Host "Report está na mesma pasta onde foi executado o script com o nome de RelatorioExchange + a data e hora atual"
-$Report | Select-Object Nome, Email, StatusCaixa, TipoDeCaixa, LoginBloqueado, StatusMFA, MetodoPadraoMFA, MfaCelular, Criacao, AlteracaoSenha, UltimoLogin, SMTP, Aliases, Licenca, QtdItens, VolumeCaixa, StatusArquivoMorto, VolumeArquivoMorto, MarcaRetencao, StatusAutoExpanssaoMorto, CotaCaixa | Sort-Object UserPrincipalName | Out-GridView
+$Report | Select-Object NomeExibicao, Email, StatusCaixa, TipoDeCaixa, LoginBloqueado, StatusMFA, MetodoPadraoMFA, MfaCelular, Criacao, AlteracaoSenha, UltimoLogin, SMTP, Aliases, Licenca, QtdItens, VolumeCaixa, StatusArquivoMorto, VolumeArquivoMorto, MarcaRetencao, StatusAutoExpanssaoMorto, CotaCaixa | Sort-Object UserPrincipalName | Out-GridView
 $Report | Sort-Object UserPrincipalName | Export-CSV -Encoding UTF8 -NoTypeInformation ".\RelatorioExchange_$((Get-Date -format yyyy-MMM-dd-ddd` hh-mm` tt).ToString()).csv"
 Disconnect-ExchangeOnline -Confirm:$false
