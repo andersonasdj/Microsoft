@@ -1,0 +1,22 @@
+﻿<#
+==========================================================================================================
+Nome:           Expansão arquivo morto 365
+Descrição:      Procedimento para (forçar) a expansão do armazenamento do arquivo morto
+Version:        1.0
+Criado por:     Anderson de Araujo Santos
+Observação1:    Antes de usar, instalar o modulo, importar e liberar execução de script não assinado.
+
+==========================================================================================================
+ 
+ Install-Module ExchangeOnlineManagement
+ Import-Module ExchangeOnlineManagement
+ Set-ExecutionPolicy Unrestricted
+
+#>
+
+#Conectar powershell:
+Connect-ExchangeOnline -UserPrincipalName navin@contoso.com
+
+
+#O comando abaixo habilita para uma conta específica
+Enable-Mailbox email@contoso.com.br -AutoExpandingArchive
