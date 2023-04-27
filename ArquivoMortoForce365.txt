@@ -10,8 +10,9 @@ Observação2:    Caso tenha acabado de ativar o arquivo morto, pode ser necess�
 ==========================================================================================================
  
  Install-Module ExchangeOnlineManagement
- Import-Module ExchangeOnlineManagement
  Set-ExecutionPolicy Unrestricted
+ Import-Module ExchangeOnlineManagement
+ 
 
 #>
 
