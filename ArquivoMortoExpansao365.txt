@@ -9,8 +9,9 @@ Observação1:    Antes de usar, instalar o modulo, importar e liberar execuçã
 ==========================================================================================================
  
  Install-Module ExchangeOnlineManagement
- Import-Module ExchangeOnlineManagement
  Set-ExecutionPolicy Unrestricted
+ Import-Module ExchangeOnlineManagement
+ 
 
 #>
 
