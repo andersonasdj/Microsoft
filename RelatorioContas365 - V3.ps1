@@ -35,18 +35,22 @@ ForEach ($Usuario in $Usuarios) {
 
     if($Usuario.isLicensed -eq $false){
         $StatusCaixa = "Não Licenciado"
+        $UsuarioExchange = $null
+        $UltimoLoginData = $null
     }else{
         $StatusCaixa = "Licenciado"
+        $UsuarioExchange = Get-Mailbox -Identity $UsuarioTemporario
+        $UltimoLoginData = Get-MailboxStatistics -Identity $Usuario.UserPrincipalName | Select LastLogonTime
     }
     
-    $UsuarioExchange = Get-Mailbox -Identity $UsuarioTemporario
+    
     Write-Progress -Activity "`n     Processando : $Contagem "`n"  Processando a caixa: $UsuarioTemporario"
 
     $MetodoPadraoMFA = ($Usuario.StrongAuthenticationMethods | Where-Object { $_.IsDefault -eq "True" }).MethodType
     $MfaCelular = $Usuario.StrongAuthenticationUserDetails.PhoneNumber
     $PrimarySMTP = $Usuario.ProxyAddresses | Where-Object { $_ -clike "SMTP*" } | ForEach-Object { $_ -replace "SMTP:", "" }
     $Aliases = $Usuario.ProxyAddresses | Where-Object { $_ -clike "smtp*" } | ForEach-Object { $_ -replace "smtp:", "" }
-    $UltimoLoginData = Get-MailboxStatistics -Identity $Usuario.UserPrincipalName | Select LastLogonTime
+   
     
     if ($UltimoLoginData -eq $null){
         if ($UltimoLoginData.LastLogonTime -eq $null){
